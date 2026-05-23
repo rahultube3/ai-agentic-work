@@ -1,0 +1,24 @@
+:root {
+  --bg: #0f1115;
+  --surface: #1a1d24;
+  --surface-hover: #232730;
+  --border: #2a2f3a;
+  --text: #e6e9ef;
+  --text-muted: #9aa3b2;
+  --accent: #5b9dff;
+  --accent-soft: rgba(91, 157, 255, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+}
