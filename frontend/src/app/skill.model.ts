@@ -4,6 +4,8 @@ export interface Skill {
   tags: string[];
   path: string;
   body: string;
+  installs: number;
+  trend: number[];
 }
 
 export interface SearchHit {

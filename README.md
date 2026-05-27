@@ -52,7 +52,29 @@ API at `http://localhost:8000`:
 - `GET /api/search?q=<query>&limit=10`
 - `POST /api/reindex`
 
-Override the skills directory with `SKILLS_DIR=/path/to/skills`.
+### Source modes
+
+The backend indexes from one of two sources, chosen by env vars:
+
+| Mode   | Env vars                                               | When        |
+|--------|--------------------------------------------------------|-------------|
+| Local  | `SKILLS_DIR=/path` (default: `./skills`)               | Default     |
+| GitHub | `SKILLS_REPO=owner/repo` + optional `SKILLS_BRANCH`, `SKILLS_REPO_PATH`, `GITHUB_TOKEN` | When `SKILLS_REPO` is set |
+
+Examples:
+
+```bash
+# Local
+uvicorn backend.main:app --reload --port 8000
+
+# GitHub (public repo, no token needed)
+SKILLS_REPO=rahultube3/ai-agentic-work uvicorn backend.main:app --reload --port 8000
+
+# GitHub with token (private repo or higher rate limits)
+GITHUB_TOKEN=ghp_xxx SKILLS_REPO=rahultube3/ai-agentic-work uvicorn backend.main:app --reload
+```
+
+`GET /api/health` reports the active source. `POST /api/reindex` pulls fresh data.
 
 ## Run the frontend
 
